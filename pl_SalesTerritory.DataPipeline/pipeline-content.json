@@ -1,0 +1,154 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "Copy Sales Territory",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "AzureSqlSource",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "annotations": [],
+              "type": "AzureSqlTable",
+              "schema": [],
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "DimSalesTerritory",
+                "database": "AdventureWorksDW"
+              },
+              "externalReferences": {
+                "connection": "6baebf36-3173-4770-becd-672f1a7a97a3"
+              }
+            }
+          },
+          "sink": {
+            "type": "DelimitedTextSink",
+            "storeSettings": {
+              "type": "SharePointOnlineFileWriteSettings"
+            },
+            "formatSettings": {
+              "type": "DelimitedTextWriteSettings",
+              "fileExtension": ".txt"
+            },
+            "datasetSettings": {
+              "annotations": [],
+              "type": "DelimitedText",
+              "typeProperties": {
+                "location": {
+                  "type": "SharePointOnlineFileStoreLocation",
+                  "fileName": "fdsa",
+                  "folderPath": "asdf"
+                },
+                "columnDelimiter": ",",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true,
+                "quoteChar": "\""
+              },
+              "schema": [],
+              "externalReferences": {
+                "connection": "02ef5693-873d-4158-80ae-1dc5c22b1dd7"
+              }
+            }
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+              {
+                "source": {
+                  "name": "SalesTerritoryKey",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "SalesTerritoryKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                }
+              },
+              {
+                "source": {
+                  "name": "SalesTerritoryAlternateKey",
+                  "type": "Int32",
+                  "physicalType": "int"
+                },
+                "sink": {
+                  "name": "SalesTerritoryAlternateKey",
+                  "type": "Int32",
+                  "physicalType": "integer"
+                }
+              },
+              {
+                "source": {
+                  "name": "SalesTerritoryRegion",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "SalesTerritoryRegion",
+                  "type": "String",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "SalesTerritoryCountry",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "SalesTerritoryCountry",
+                  "type": "String",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "SalesTerritoryGroup",
+                  "type": "String",
+                  "physicalType": "nvarchar",
+                  "length": "50"
+                },
+                "sink": {
+                  "name": "SalesTerritoryGroup",
+                  "type": "String",
+                  "physicalType": "string"
+                }
+              },
+              {
+                "source": {
+                  "name": "SalesTerritoryImage",
+                  "type": "Byte[]",
+                  "physicalType": "varbinary",
+                  "length": "MAX"
+                },
+                "sink": {
+                  "name": "SalesTerritoryImage",
+                  "type": "String",
+                  "physicalType": "string"
+                }
+              }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        }
+      }
+    ]
+  }
+}
