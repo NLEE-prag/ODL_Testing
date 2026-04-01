@@ -1,7 +1,0 @@
-key_value_replace:
-  - find_key: "$.properties.activities[?(@.name=='Copy Sales Territory')]
-               .typeProperties.source.datasetSettings
-               .externalReferences.connection"
-    replace_value:
-      dev: "f1c4fa88-e9b5-4c5c-a414-f7d8ab7c0a33"
-      prod: "c89ebb1c-e347-40ba-9f7d-ab58558e8dba"
